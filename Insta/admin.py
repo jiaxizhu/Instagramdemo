@@ -1,9 +1,7 @@
 from django.contrib import admin
 
+from Insta.models import Post, InstaUser
 # Register your models here.
 
-from Insta.models import Post
-
-
-
 admin.site.register(Post)
+admin.site.register(InstaUser)

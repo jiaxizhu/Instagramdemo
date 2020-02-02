@@ -1,7 +1,7 @@
-<h1>Sign Up </h1>
+<h1>Sign Up</h1>
 
-<form method ="post" >
+<form action = '' method = 'post' enctype = 'multipart/form-data'>
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit"> Sign up </button>
+    {{form.as_p}}
+    <button type = 'submit'>Sign Up</button>
 </form>
