@@ -1,32 +1,53 @@
-{% load static %}
-
-<ul>
-    {% if request.user.is_authenticated %}
-        <li>
-            Hi,{{request.user.username}}
-        </li>
-        <li>
-           <a href = "{% url 'logout' %}"> Logout </a>
-        </li>
-    {% else %}
-        <li>
-            <a href = "{% url 'login' %}"> Login </a>
-        </li>
-        <li>
-            <a href = "{% url 'signup' %}"> Signup </a>
-        </li>
-    {% endif %}
-</ul>
+{% extends "base.html" %}
 
 
-<div>
-    <a href = "{% url 'make_post' %}"> Make Post </a>
-</div>
+{% block content %}
 
-<div>
+<div class="cards-listing">
     {% for post in object_list %}
-        <a href = "{% url 'post_detail' post.id %}">
-            <img src = "/{{post.image}}" height = 200 >
-        </a>
+        <div class="row">
+            <div class="card view-update {{ post.pk }}">
+
+                <div class="card__panel-head">
+                    <div class="poster__info">
+                        <a href="{% url 'helloworld' %}" class="poster__name">
+                            {% if post.author.profile_pic %}
+                                <img class="poster__profilepic" src="/{{ post.author.profile_pic }}">
+                            {% endif %}
+                            {{ post.author.username }}
+                        </a>
+
+
+                    </div>
+                </div>
+
+
+
+                <a href="{% url 'posts_detail' post.pk %}">
+                    <img class="card__main-image" src="/{{ post.image }}">
+                </a>
+
+                <div class="card__panel-body">
+                    <div class="likes">
+                        {% if post.get_like_count %}
+                            {{ post.get_like_count }} like{% if post.get_like_count > 1 %}s{% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <section class="input-row">
+                    <i class="fa fa-heart-o sumbit-like" aria-hidden="true"></i>
+
+                </section>
+
+
+
+
+
+
+            </div>
+        </div>
     {% endfor %}
 </div>
+
+{% endblock content %}
