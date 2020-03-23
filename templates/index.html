@@ -1,4 +1,6 @@
+
 {% extends "base.html" %}
+
 
 
 {% block content %}
@@ -10,7 +12,7 @@
 
                 <div class="card__panel-head">
                     <div class="poster__info">
-                        <a href="{% url 'helloworld' %}" class="poster__name">
+                        <a href="{% url 'HelloWorld' %}" class="poster__name">
                             {% if post.author.profile_pic %}
                                 <img class="poster__profilepic" src="/{{ post.author.profile_pic }}">
                             {% endif %}
@@ -23,7 +25,7 @@
 
 
 
-                <a href="{% url 'posts_detail' post.pk %}">
+                <a href="{% url 'post_detail' post.pk %}">
                     <img class="card__main-image" src="/{{ post.image }}">
                 </a>
 

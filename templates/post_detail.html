@@ -1,12 +1,31 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% block content %}
 
-<div>
-    <a class="Update_post" href="{% url 'post_update' object.id %}"> Update Post</a>
-    <a href="{% url 'post_delete' object.id %}"> Delete Post</a>
+<div class="row single-post">
+    <div class="single-post-card view-update {{ object.pk }}">
+        <div class="header">
+            <a href="{% url 'HelloWorld' %}">
+                {% if object.author.profile_pic %}
+                    <img class="picture-circle--medium" src="/{{object.author.profile_pic}}">
+                {% endif %}
+                {{ object.author.username }}
+            </a>
+        </div>
+
+        <div class="image__wrapper">
+            <img class="card__main-image" src="/{{object.image}}" width='1000', height='1000'>
+        </div>
+
+        <div class="card__panel-body">
+            <div class="likes">
+                {% if post.get_like_count %}
+                    {{ post.get_like_count }} like{% if post.get_like_count > 1 %}s{% endif %}
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
 </div>
 
-<p> {{ object.title}} </p>
-<image src="/{{object.image}}">
-
-{% endblock content %}>
+{% endblock content %}
