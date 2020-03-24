@@ -1,7 +1,6 @@
-
 {% extends "base.html" %}
 
-
+{% load custom_tags %}
 
 {% block content %}
 
@@ -38,9 +37,13 @@
                 </div>
 
                 <section class="input-row">
-                    <i class="fa fa-heart-o sumbit-like" aria-hidden="true"></i>
+                    <i class="fa {% has_user_liked_post post user %} submit-like" aria-hidden="true"></i>
+                      <div class="hidden-data {{ post.pk }}" style="display: none;">
+                            <span class="post-pk">{{ post.pk }}</span>
+                        </div>
 
                 </section>
+
 
 
 
