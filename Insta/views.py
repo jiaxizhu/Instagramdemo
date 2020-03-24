@@ -2,7 +2,7 @@ from annoying.decorators import ajax_request
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from Insta.models import Post, Like
+from Insta.models import Post, Like, InstaUser
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -22,6 +22,11 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
     template_name = 'post_detail.html'
     login_url = 'login'
+
+
+class UserDetailView(DetailView):
+    model = InstaUser
+    template_name = 'user_detail.html'
 
 
 class PostCreatelView(LoginRequiredMixin, CreateView):
