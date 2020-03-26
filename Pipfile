@@ -7,10 +7,10 @@ verify_ssl = true
 
 [packages]
 django = "*"
+pillow = "*"
 django-annoying = "*"
 django-imagekit = "*"
 gunicorn = "*"
-whitenoise = "*"
 
 [requires]
 python_version = "3.8"
