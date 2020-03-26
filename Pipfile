@@ -8,8 +8,9 @@ verify_ssl = true
 [packages]
 django = "*"
 django-annoying = "*"
-django-django-imagekit = "*"
 django-imagekit = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"
