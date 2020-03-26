@@ -1,9 +1,10 @@
 
+
 {% load custom_tags %}
 <div class="navbar navbar-default navbar-fixed-top" id="main-nav">
     <div class="container desktop">
         <div class="navbar-header">
-            <a href="{% url 'posts' %}" class="navbar-brand">Instagram Demo</a>
+            <a href="{% url 'posts' %}" class="navbar-brand">Insta</a>
         </div>
 
         <div id="navbar-main">
@@ -11,13 +12,13 @@
                 {% if request.user.is_authenticated %}
                     <li>
                       <a href="{% url 'posts' %}">
-                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <i class="fa fa-home {% if request.resolver_match.url_name == 'posts' %}active{% endif %}" aria-hidden="true"></i>
                       </a>
                     </li>
-                    <li><a href="{% url 'helloworld' %}"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                    <li><a href="{% url 'make_post' %}"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
-                    <li><a href="{% url 'user_detail' user.id %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'explore' %}"><i class="fa fa-compass {% active 'explore' %}" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'make_post' %}"><i class="fa fa-plus  {% active 'make_post' %}" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'user_detail' user.id %}"><i class="fa fa-user {% if request.resolver_match.url_name == 'user_detail' %}active{% endif %}" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out {% active 'logout' %}" aria-hidden="true"></i></a></li>
                 {% else %}
                     <li>
                         <a href="{% url 'login' %}">login</a>

@@ -31,7 +31,6 @@ class HelloWorld(TemplateView):
 class PostsView(ListView):
     model = Post
     template_name = 'index.html'
-    login_url = 'login'
 
     def get_queryset(self):
         current_user = self.request.user
@@ -88,6 +87,15 @@ class SignUp(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'signup.html'
     success_url = reverse_lazy("login")
+
+
+class ExploreView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'explore.html'
+    login_url = 'login'
+
+    def get_queryset(self):
+        return Post.objects.all().order_by('-posted_on')[:20]
 
 
 @ajax_request
